@@ -1,28 +1,38 @@
+
+let inputMail = document.getElementById('mail');
 let form = document.getElementById('form');
-let inputEmail = document.getElementById('mail');
-let succesMsg = document.getElementById('success-msg');
-let successBtn = document.getElementById('success-btn');
-let invalidLabel = document.getElementById('invalid')
-let inputControl = document.getElementById('input-control')
+let errorElement = document.getElementById('error')
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
 
-    if(inputEmail.value.trim() !== '') {
-        inputEmail.classList.add('success')
-        succesMsg.classList.add('success')
-        document.querySelector('.container').classList.add('success')
-        
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    console.log(inputMail.value.length)
+    let mailRe = /\w+@\w+.\w+/i
+    let msg = [];
+    console.log(mailRe.test(inputMail.value))
+    
+    if (mailRe.test(inputMail.value)) {
+        e.preventDefault()
+        form.classList.add('success');
+        document.querySelector('.container').classList.add('success');
+        document.getElementById('success-msg').classList.add('success');
+        errorElement.innerText = 'succeed';
+        inputMail.classList.remove('fail');
+        document.querySelector('.pSucces span').innerText = inputMail.value;
+        return true
     } else {
-        document.getElementById('invalid').classList.add('show')
+        e.preventDefault()
+        errorElement.innerText = 'Valid email required'
+        inputMail.innerText = inputMail.value;
+        inputMail.classList.add('fail')
+        return false
     }
+
 })
 
-console.log(invalidLabel)
-
-successBtn.onclick = function () {
-    inputEmail.classList.remove('success')
-    succesMsg.classList.remove('success')
+document.getElementById('success-btn').onclick = function () {
+    form.classList.remove('success');
     document.querySelector('.container').classList.remove('success')
-    document.getElementById('invalid').classList.remove('show')
+    document.getElementById('success-msg').classList.remove('success')
 }
+// console.log(/^[a-zA-Z1-9]+@[a-zA-Z1-9]+\.\w+/.test(mail))
