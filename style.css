@@ -12,7 +12,6 @@
 }
 body {
     font-family: 'Roboto', sans-serif;
-    padding-top: 5rem;
     background-color: var(--Dark-Slate-Grey);
 }
 ul {
@@ -36,6 +35,12 @@ form {
     display: flex;
     flex-direction: column;
 }
+form #error {
+    text-align: right;
+    color: #ff586b;
+    font-weight: bold;
+    font-size: .8rem;
+}
 #form.success {
     display: none;
 }
@@ -46,9 +51,7 @@ form h1 {
 form > p {
     margin: 2rem 0;
 }
-form ul.products {
 
-}
 form ul.products li {
     display: flex;
     align-items: center;
@@ -61,43 +64,14 @@ form ul.products li img {
     width: 25px;
     height: 25px;
 }
-form .labels {
-    display: flex;
-    justify-content: space-between;
-}
-form label {
-    font-weight: 700;
-    font-size: .8rem;
-}
-form #invalid {
-    font-size: .8rem;
-    font-weight: 700;
-    visibility: hidden;
-}
-form #invalid.show {
-    visibility: visible;
-    color: red;
-}
-form .input-control.success input[type='text'] {
-    border: 1px solid green;
-}
-form .input-control.success label#invalid {
-    color: green;
-}
 
-form label#invalid.fail {
-    visibility: visible;
-}
+
 form input {
     border-radius: .4rem;
     padding: 1rem;
-    cursor: pointer;
+
     transition: .3s;
     width: 100%;
-}
-form .input-control input:focus {
-    outline: none;
-    border: none;
 }
 
 form input::placeholder {
@@ -105,36 +79,45 @@ form input::placeholder {
     font-weight: 700;
     text-transform: capitalize;
 }
-form input[type='text'] {
+form input#mail {
     border: 2px solid var(--Grey);
     margin: 1rem 0;
 }
-
-
-form input[type='text']:hover {
+form input#mail.fail {
+    color: #ff586b;
+    border-color: #ff586b;
+    background: rgba(255, 0, 0, 10%);
+}
+form input#mail.fail:hover {
+    border-color: #ff586b;
+}
+form input#mail:hover {
     border-color: var(--Dark-Slate-Grey);
 }
-form input[type='text']:hover::placeholder {
+form input#mail:hover::placeholder {
     color: var(--Dark-Slate-Grey);
     transition: .3s;
 }
-form input[type='email']:focus::placeholder {
+form input#mail:focus::placeholder {
     visibility: hidden;
 }
 form input[type='submit'] {
     background-color: var(--Charcoal-Grey);
     color: var(--White);
+    cursor: pointer;
 }
 form input[type='submit']:hover {
-    background-image: linear-gradient(to right, #ff586b, #ff4c77);
+    background-image: linear-gradient(to right,
+                            #ff586b 50%, 
+                            #ff6251 50%);
     border-color: #ff586b;
     outline: none;
 }
-.container .image {
+/* .container picture {
     width: 40%;
     height: 100%;
-}
-.container .image img {
+} */
+.container picture img {
     height: 100%;
     width: 100%;
 }
@@ -148,7 +131,7 @@ form input[type='submit']:hover {
     height: 100vh;
     z-index: 99;
     padding: 1rem;
-    padding-top: 10rem;
+    padding-top: 4rem;
     transform: translateX(-50%);
     position: relative;
     display: none;
@@ -156,15 +139,18 @@ form input[type='submit']:hover {
 #success-msg.success {
     display: block;
 }
-.success-msg img {
 
-}
+
 #success-msg h2 {
     margin: 2rem 0;
 }
 #success-msg p {
     line-height: 2;
+    font-weight: 400;
+}
+#success-msg p span {
     font-weight: 700;
+    color: var(--Dark-Slate-Grey);
 }
 #success-msg #success-btn {
     width: 90%;
@@ -180,7 +166,9 @@ form input[type='submit']:hover {
     transition: .3s;
 }
 #success-msg #success-btn:hover {
-    background-color: #ff586b;
+    background-image: linear-gradient(to right,
+                            #ff586b 50%, 
+                            #ff6251 50%);
     border-color: #ff586b;
 }
 /* End success message */
@@ -198,18 +186,29 @@ form input[type='submit']:hover {
         padding-bottom: 3rem;
         border-radius: 0;
     }
-    .container .image {
+    .container picture {
         width: 100%;
+    }
+    #success-msg {
+        margin-top: 25vh;
+        height: 50vh;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        border-radius: 1rem;
+        margin-bottom: 2rem;
+    }
+    #success-msg h2 {
+        margin: 1rem 0;
     }
 
 }
-@media screen and (max-width: 991px) {
-    .container .image img.desk {
+@media screen and (max-width: 1199px) {
+    .container picture img.desk {
         display: none;
     }
 }
-@media (min-width: 992px) {
-    .container .image img.mob {
+@media (min-width: 1200px) {
+    .container picture img.mob {
         display: none;
     }
 }
